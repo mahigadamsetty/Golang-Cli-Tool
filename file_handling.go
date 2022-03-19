@@ -10,7 +10,6 @@ import (
 func exists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
-		fmt.Println(err)
 		return true, nil
 	}
 	if os.IsNotExist(err) {
@@ -26,13 +25,11 @@ func WriteToFile(File string, content string) error {
 	}
 	var file *os.File
 	if !exists {
-		fmt.Println(exists)
 		file, err = os.Create(File)
 		if err != nil {
 			log.Fatal(err)
 		}
 	} else {
-		fmt.Println(exists)
 		file, err = os.OpenFile(File, os.O_RDWR|os.O_APPEND, 0660)
 		if err != nil {
 			log.Fatal(err)
